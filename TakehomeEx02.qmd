@@ -37,7 +37,6 @@ Critiques:
 
 # Creating Age-sex pyramid using ggplot2
 
-
 ```{r}
 pacman::p_load(tidyverse)
 pacman::p_load(readxl)
@@ -49,8 +48,6 @@ amk_data <- read_excel("Singapore Residents by Planning Area, Subzone, Age Group
 head(amk_data)
 ```
 
-
-
 ```{r}
 ggplot(amk_data,
        aes( x = amk_data$`Population Perc` , y = amk_data$`AGE GROUP` , fill = amk_data$ID ))+
@@ -61,5 +58,3 @@ ggplot(amk_data,
   scale_x_continuous(breaks = round(seq(min(amk_data$`Population Perc`), max(amk_data$`Population Perc`), by = 0.5),1)) +
   labs(fill='Gender') 
 ```
-
-
