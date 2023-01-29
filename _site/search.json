@@ -1,0 +1,79 @@
+[
+  {
+    "objectID": "Dashboard Building.html",
+    "href": "Dashboard Building.html",
+    "title": "Dashboard Building",
+    "section": "",
+    "text": "Open new Tableau window. Save and name it as your project.\nWe can drag the xlsx excel data into this Tableau window.\nDrag Sheet1 into the middle (this is the final data table above after data transformation from previous steps). We shall take this as our datasource.\nClick on Sheet 1 and we will create the first Tableau Sheet\nWe shall put drag these items to Columns: Sums of MALE , Sums of FEMALE and Rows: Planning Area\nNext, right click on one of the Axis and EDIT AXIS\nWe will tick the Reverse options, as well as rename the axis to “Male Population”\nWe shall repeat the same for Female side. (but do not tick the Reverse option).\nWe shall then right click Null value to exclude them from the filter\nFinally, we will have a pyramid graph, similar to this\nWe shall right on the Sheet 1, and duplicate this worksheet 9 times, one for each other areas.\nWe shall rename each worksheets as per each of the planning areas ( Bedok, Choa Chu Kang, Hougang etc…)\nThis is already a pyramid graph of Singapore populations for 9 most populous areas, but we still need to break down in term of age group."
+  },
+  {
+    "objectID": "Dashboard Building.html#lastly-we-can-building-dashboard.",
+    "href": "Dashboard Building.html#lastly-we-can-building-dashboard.",
+    "title": "Dashboard Building",
+    "section": "Lastly, we can building Dashboard.",
+    "text": "Lastly, we can building Dashboard.\nCreate new dashboard\n\nWe choose Floating as the setting and choose Vertical objects\n\nWe divide dashboard into 9 evenly horizontal rectangle containers. Next we drag each of the Sheets into each of these container.\n\n\nRemember to change Standard to Entire view to see entire graph.\nAlso click on Device Preview and view as Large Desktop Monitor (2560 x 1440) And click on Size ( default is Fixed) and change to Automatic.\nAfter dragging each planning areas into the container. Remove the labels and ledgers ( Plannings Areas, Sum of Male and Sums of Females.\nPlay around with the 9 planning areas (alignments of lines and borders, colours etc..)"
+  },
+  {
+    "objectID": "Dashboard Building.html#final-results-would-look-similar-to-this.",
+    "href": "Dashboard Building.html#final-results-would-look-similar-to-this.",
+    "title": "Dashboard Building",
+    "section": "Final results would look similar to this.",
+    "text": "Final results would look similar to this."
+  },
+  {
+    "objectID": "Dashboard Building.html#publishing-dashboard",
+    "href": "Dashboard Building.html#publishing-dashboard",
+    "title": "Dashboard Building",
+    "section": "Publishing Dashboard",
+    "text": "Publishing Dashboard\nFinally, we can go to Data / Sheet1 / Extract Data\nAfter data extraction (saving Tableau working as .hyper file), we can go to Server > Tableau Public > Save to Tableau Public.\nIf you have logged in to your Tableau public account, this will be uploaded as a new Viz under your profile.\nYou can view my published Viz under this link\nSingapore Population Distribution"
+  },
+  {
+    "objectID": "Data Preparation.html",
+    "href": "Data Preparation.html",
+    "title": "Data Preparation",
+    "section": "",
+    "text": "Singapore Residents by Planning Area / Subzone, Age Group, Sex and Type of Dwelling, June 2022 should be used to prepare the analytical visualisation. It is available at Department of Statistics, Singapore(in short SingStat).\nLet’s examine the data.\nWe have 1 excel dataset under xlsx format. Inside we found 3 worksheets: 2022(Total) / 2022 (Male) / 2022 (Female).\nEach worksheet has 5 columns as followed:\n\n\n\n\n\n\nPlanning Areas represents the names for each planning areas in Singapore.\nSubzone further divides Planning area into small zones.\nAge group represents the age groups for population between 0 and 90, with interval of 5 years (0-4 / 5-9 / 10-14 etc…)\nType of Dwelling represents the types of housing in this census.\nTotal is the number of populations for each categories.\n\n3 worksheets, represents numbers for Male populations, Female Population and Total.\nOur tasks would be creating visualizations from these raw data. Our choices of visualization will be using Age-Sex pyramid."
+  },
+  {
+    "objectID": "Data Preparation.html#data-preparation",
+    "href": "Data Preparation.html#data-preparation",
+    "title": "Data Preparation",
+    "section": "Data Preparation",
+    "text": "Data Preparation\nFirst, Age-sex pyramid requires data to be split into male and females. The exercise also requires to split into 9 different planning areas.\nFirst we will copy the columns which contains the total number of male ( from 2022 (Male) worksheet ) and total number of female ( from 2022 (Female)) worksheet to 2022 (Total) worksheet, adding on as 6th and 7th columns.\n\n\n\n\n\nFrom here, we can create Pivot table which includes all the data under this worksheet.\n\n\n\n\n\nSelect entire worksheet 2022 (Total) as Data source\n\n\n\n\n\nThere will be a new worksheet created, as Pivot table.\nNow we will drag Planning Area to Rows box for the Pivot table. And we will choose Total as Values box \nNow we shall right click on the Sum of Total column and Sort from Largest to smallest. We will now select 9 most populous planning areas of Singapore. We shall filter and keep these 9 areas only.\n\nNext step, we drag in Males and Females (drag and drop to Pivot table Values box) and remove the Sums of Total from this Values box.\nWe will also add in the Age Group, under Rows box.\n\nWe will have a table of 9 most populous areas in Singapore, and their age-group smaller breakdown.\n\nWe will filter out the Total from these age group breakdown. (Because the total for each areas are already in bolden first row, so we don’t need this last row of Total anymore.\nWe shall copy this table and paste-special (values only) to a new worksheet.\n\nInsert a new column in between Rows Label and Sums of Male.\nCopy the age group over, we will separate: First column is only for name of Planning Areas ( Bedok, Choa Chu Kang, Hougang etc…) and second column will be only for Age Group."
+  },
+  {
+    "objectID": "Data Preparation.html#our-final-worksheet-we-will-have-a-similar-worksheet-like-this-under-worksheet-sheet1",
+    "href": "Data Preparation.html#our-final-worksheet-we-will-have-a-similar-worksheet-like-this-under-worksheet-sheet1",
+    "title": "Data Preparation",
+    "section": "Our final worksheet, we will have a similar worksheet like this ( under worksheet Sheet1)",
+    "text": "Our final worksheet, we will have a similar worksheet like this ( under worksheet Sheet1)"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Singapore Population by Gender Distribution",
+    "section": "",
+    "text": "Welcome to Capybara’s homepage.\nToday is a good day for us to take a look at Singapore Population by Gender distribution.\nHere we will examine the 9 most populous districts in Singapore!"
+  },
+  {
+    "objectID": "Summary.html",
+    "href": "Summary.html",
+    "title": "SUMMARY",
+    "section": "",
+    "text": "There is a general assumption about Singapore population: Singapore is having an aging population. The general trend observable from the pyramid graphs of 9 different planning areas in Singapore show that they are all middle heavy (meaning the highest segment of population are among the working adults between 25- to 60 years old).\nWhile it is natural that the bottom of these pyramid graph, which represent the elderly populations, are small, due to death, it is indeed an evident of an aging population when most of the top portions of the pyramids are also small. This shows that Singaporean at family-planning age (at the age 25-60 years old) , are not having children, hence the low fertility rate and a smaller tops of the pyramids\nA closer look at different planning areas, can give us some patterns on different geographical distributions as well. Generally, other 7 out of 9 areas in this dashboard, for the age between 0 and 20, the younger, the smaller are the population numbers, while the adolescent population are largest among pre-adults’ population. Except Punggol and Sengkang, these 2 areas see the highest percentage of populations of children age, when compared to the rest of population of the area. This may suggest that Sengkang and Punggol are two areas where there are many young families / couples are having children.\nThe gender distribution of Singapore’s population is relatively balanced, However, there are slight variations in the gender distribution among different age groups. For example, among children aged 0-14, there are slightly more males than females. However, among adults aged 15-64, there are slightly more females than males. And among older adults aged 75 and above, there are more females than males. This is because female tend to have higher life expectancy than male.\nFurther breakdown by planning areas, Punggol and Sengkang are 2 areas with highest portion of populations among the 25-40 years old, millennial prime working populations, compared to the other age groups in the same areas. This means the average ages of population among these 2 areas would be lower, compared to other matured estates.\nIn conclusion, while some of areas of Singapore are consisting of younger populations and children / teenage populations, overall, Singapore is still foreseen to encounter an aging population. With majority of graphs are middle heavy ( the working adults age between 25-60), these segment of population will eventually grow older and move to older age groups, while the smaller top populations of children and teenagers are too small to replace the current working adult population. If this is not addressed urgently by the government, this will lead to many social and economic and healthcare problems for the country within next few decades."
+  },
+  {
+    "objectID": "Summary.html#about-this-site.",
+    "href": "Summary.html#about-this-site.",
+    "title": "SUMMARY",
+    "section": "About this site.",
+    "text": "About this site.\nThis is capybara first site that help me start learning Data visualization with many tools\n\nData Preparation and Cleaning with Excel\nData Visualization by Tableau\nWebsite Design by HTML and R Studio tools to create , render , commit onto Github and subsequently publishing on Netlify"
+  },
+  {
+    "objectID": "TakehomeEx02.html",
+    "href": "TakehomeEx02.html",
+    "title": "Take Home 2",
+    "section": "",
+    "text": "The Original DataViz\nIn the first task, we are supposed to create Age-sex Pyramid to cover 9 planning areas of Singapore in term of Male/ Female and the age group.\nBelow is one of the DataViz that was created by a classmate.\n\n\n\n\n\nOriginal DataViz https://public.tableau.com/app/profile/ruipeng.wang/viz/take_home_01/Dashboard1?fbclid=IwAR1xjLcdtI9B6IQsXvE8DeuHGT0Xe1sL20M6RPAZ2gvhEV_hLizpZ9QdADg\nCritiques:\n\nClarity: The viz was created for 9 planning areas with 9 different populations. However, they use to same absolute scales in terms of number of people. Therefore, the areas with small number of populations ( Downtown Core and Outram) when putting in the same x-axis scale as other areas, does not have high enough number of people, to show case the distributions as Age-sex pyramid.\nClarity Some age groups have data labels ( number of people in that age group), however many age groups do not have any data labels. It looks like the data label are randomly assigned.\nAesthetics Age-sex pyramid of 9 area, should not occupy such big area of spaces (taking up entire horizontal dataviz). There are other designs that can save spaces for other graphs / charts that will portray more information from the data.\n\n\n\nPropose Designs\n\n\n\n\n\n\nTo address the difference in term of absolute numbers of populations in different areas, we should be converting them into percentage of each age groups versus the total population of that areas, instead keeping them on the same scale of population numbers.\nShould avoid individual bar labels, as there are quite a big numbers of populations. Avoid randomly labeling and it can be quite confusing\nTo address the aesthetics, we can use the upper half of the dashboard to showcase all 9 age-sex pyramid of the areas, and using the other spaces for other graphs that can showcase more information from the same data.\n\n\n\nCreating Age-sex pyramid using ggplot2\n\npacman::p_load(tidyverse)\npacman::p_load(readxl)\n\n\namk_data <- read_excel(\"Singapore Residents by Planning Area, Subzone, Age Group, Sex and Type of Dwelling, June 2022.xlsx\", sheet = \"AMK\")\n\nhead(amk_data)\n\n# A tibble: 6 × 4\n  `Row Labels` `AGE GROUP` `Population Perc` ID                \n  <chr>        <chr>                   <dbl> <chr>             \n1 Ang Mo Kio   0 - 4                 -0.0332 Percentage of Male\n2 Ang Mo Kio   5 - 9                 -0.0385 Percentage of Male\n3 Ang Mo Kio   10 - 14               -0.0428 Percentage of Male\n4 Ang Mo Kio   15 - 19               -0.0478 Percentage of Male\n5 Ang Mo Kio   20 - 24               -0.0544 Percentage of Male\n6 Ang Mo Kio   25 - 29               -0.0640 Percentage of Male\n\n\n\nggplot(amk_data,\n       aes( x = amk_data$`Population Perc` , y = amk_data$`AGE GROUP` , fill = amk_data$ID ))+\n  geom_bar(stat = \"identity\") +\n  ggtitle(\"Distribution of AMK\")+\n  ylab(\"AGE GROUP\")+\n  xlab(\"Percentage of Area Population\") +\n  scale_x_continuous(breaks = round(seq(min(amk_data$`Population Perc`), max(amk_data$`Population Perc`), by = 0.5),1)) +\n  labs(fill='Gender') \n\nWarning: Use of `` amk_data$`Population Perc` `` is discouraged.\nℹ Use `Population Perc` instead.\n\n\nWarning: Use of `` amk_data$`AGE GROUP` `` is discouraged.\nℹ Use `AGE GROUP` instead.\n\n\nWarning: Use of `amk_data$ID` is discouraged.\nℹ Use `ID` instead."
+  }
+]

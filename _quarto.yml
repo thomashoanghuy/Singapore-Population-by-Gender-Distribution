@@ -1,0 +1,28 @@
+project:
+  type: website
+
+website:
+  title: "Singapore Population by Gender Distribution"
+  navbar:
+    left:
+    - text: "Step-By-Step Guide"
+      menu:
+        - text: "Data Preparation"
+          href: Data Preparation.html
+        - text: "Dashboard Building"
+          href: Dashboard Building.html
+        - text: "Take Exercise 02"
+          href: TakehomeEx02.html
+    right: 
+    - text: "About Page"
+      href: about.html
+
+
+format:
+  html:
+    theme: simplex
+    css: styles.css
+    toc: true
+
+editor: visual
+

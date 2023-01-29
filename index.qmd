@@ -1,0 +1,9 @@
+---
+title: "Singapore Population by Gender Distribution"
+---
+
+#### Welcome to **Capybara**'s homepage.
+
+Today is a good day for us to take a look at Singapore Population by Gender distribution.
+
+Here we will examine the 9 most populous districts in Singapore!
