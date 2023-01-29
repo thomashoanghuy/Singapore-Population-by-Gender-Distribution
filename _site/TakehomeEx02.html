@@ -184,7 +184,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#the-original-dataviz" id="toc-the-original-dataviz" class="nav-link active" data-scroll-target="#the-original-dataviz">The Original DataViz</a></li>
   <li><a href="#propose-designs" id="toc-propose-designs" class="nav-link" data-scroll-target="#propose-designs">Propose Designs</a></li>
-  <li><a href="#creating-age-sex-pyramid-using-ggplot2" id="toc-creating-age-sex-pyramid-using-ggplot2" class="nav-link" data-scroll-target="#creating-age-sex-pyramid-using-ggplot2">Creating Age-sex pyramid using ggplot2</a></li>
+  <li><a href="#creating-age-sex-pyramid-using-ggplot2" id="toc-creating-age-sex-pyramid-using-ggplot2" class="nav-link" data-scroll-target="#creating-age-sex-pyramid-using-ggplot2">Creating Age-sex pyramid using ggplot2</a>
+  <ul class="collapse">
+  <li><a href="#age-sex-pyramid-graph-for-bedok" id="toc-age-sex-pyramid-graph-for-bedok" class="nav-link" data-scroll-target="#age-sex-pyramid-graph-for-bedok">AGE-SEX PYRAMID GRAPH FOR BEDOK</a></li>
+  </ul></li>
+  <li><a href="#creating-gender-pyramid-for-total-populations-of-9-planning-areas-using-ggplot2" id="toc-creating-gender-pyramid-for-total-populations-of-9-planning-areas-using-ggplot2" class="nav-link" data-scroll-target="#creating-gender-pyramid-for-total-populations-of-9-planning-areas-using-ggplot2">Creating Gender Pyramid for total populations of 9 planning areas using ggplot2</a>
+  <ul class="collapse">
+  <li><a href="#pyramid-graph-for-9-planning-areas-population-by-gender" id="toc-pyramid-graph-for-9-planning-areas-population-by-gender" class="nav-link" data-scroll-target="#pyramid-graph-for-9-planning-areas-population-by-gender">PYRAMID GRAPH FOR 9 PLANNING AREAS POPULATION, BY GENDER</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -212,12 +219,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>The Original DataViz</h1>
 <p>In the first task, we are supposed to create Age-sex Pyramid to cover 9 planning areas of Singapore in term of Male/ Female and the age group.</p>
 <p>Below is one of the DataViz that was created by a classmate.</p>
+<p><a href="https://public.tableau.com/app/profile/ruipeng.wang/viz/take_home_01/Dashboard1?fbclid=IwAR1xjLcdtI9B6IQsXvE8DeuHGT0Xe1sL20M6RPAZ2gvhEV_hLizpZ9QdADg" class="uri">https://public.tableau.com/app/profile/ruipeng.wang/viz/take_home_01/Dashboard1?fbclid=IwAR1xjLcdtI9B6IQsXvE8DeuHGT0Xe1sL20M6RPAZ2gvhEV_hLizpZ9QdADg</a></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Picture1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
-<p>Original DataViz https://public.tableau.com/app/profile/ruipeng.wang/viz/take_home_01/Dashboard1?fbclid=IwAR1xjLcdtI9B6IQsXvE8DeuHGT0Xe1sL20M6RPAZ2gvhEV_hLizpZ9QdADg</p>
+<p>Original DataViz</p>
 <p>Critiques:</p>
 <ol type="1">
 <li><p>Clarity: The viz was created for 9 planning areas with 9 different populations. However, they use to same absolute scales in terms of number of people. Therefore, the areas with small number of populations ( Downtown Core and Outram) when putting in the same x-axis scale as other areas, does not have high enough number of people, to show case the distributions as Age-sex pyramid.</p></li>
@@ -240,53 +248,278 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="creating-age-sex-pyramid-using-ggplot2" class="level1">
 <h1>Creating Age-sex pyramid using ggplot2</h1>
+<p>Loading the necessary package</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(readxl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>amk_data <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"Singapore Residents by Planning Area, Subzone, Age Group, Sex and Type of Dwelling, June 2022.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"AMK"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(amk_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>overall_data <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"Singapore Residents by Planning Area, Subzone, Age Group, Sex and Type of Dwelling, June 2022.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"TakeHome 2 data table"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(overall_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 6
+  `Row Labels` `AGE GROUP` `Sum of MALE` `Sum of FEMALE` Percentage o…¹ Percen…²
+  &lt;chr&gt;        &lt;chr&gt;               &lt;dbl&gt;           &lt;dbl&gt;          &lt;dbl&gt;    &lt;dbl&gt;
+1 Woodlands    70 - 74             23230           23830        0.0314   0.0324 
+2 Woodlands    75 - 79             10990           12980        0.0148   0.0177 
+3 Woodlands    80 - 84              6740            9550        0.00910  0.0130 
+4 Woodlands    85 - 89              2960            4550        0.00400  0.00619
+5 Woodlands    90 &amp; Over            1230            2490        0.00166  0.00339
+6 Grand Total  &lt;NA&gt;              3303750         3463030       NA       NA      
+# … with abbreviated variable names ¹​`Percentage of Male`,
+#   ²​`Percentage Of Female`</code></pre>
+</div>
+</div>
+<p>We want to use draw the percentage of the populations versus the Area population, so we just need to get the percentage column</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>overall_data <span class="ot">=</span> overall_data[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">6</span>)]</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(overall_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 4
-  `Row Labels` `AGE GROUP` `Population Perc` ID                
-  &lt;chr&gt;        &lt;chr&gt;                   &lt;dbl&gt; &lt;chr&gt;             
-1 Ang Mo Kio   0 - 4                 -0.0332 Percentage of Male
-2 Ang Mo Kio   5 - 9                 -0.0385 Percentage of Male
-3 Ang Mo Kio   10 - 14               -0.0428 Percentage of Male
-4 Ang Mo Kio   15 - 19               -0.0478 Percentage of Male
-5 Ang Mo Kio   20 - 24               -0.0544 Percentage of Male
-6 Ang Mo Kio   25 - 29               -0.0640 Percentage of Male</code></pre>
+  `Row Labels` `AGE GROUP` `Percentage of Male` `Percentage Of Female`
+  &lt;chr&gt;        &lt;chr&gt;                      &lt;dbl&gt;                  &lt;dbl&gt;
+1 Woodlands    70 - 74                  0.0314                 0.0324 
+2 Woodlands    75 - 79                  0.0148                 0.0177 
+3 Woodlands    80 - 84                  0.00910                0.0130 
+4 Woodlands    85 - 89                  0.00400                0.00619
+5 Woodlands    90 &amp; Over                0.00166                0.00339
+6 Grand Total  &lt;NA&gt;                    NA                     NA      </code></pre>
 </div>
 </div>
+<p>Let’s try with Area Bedok first.</p>
+<p>Create dataframe where Rows Labels = Bedok</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(amk_data,</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>( <span class="at">x =</span> amk_data<span class="sc">$</span><span class="st">`</span><span class="at">Population Perc</span><span class="st">`</span> , <span class="at">y =</span> amk_data<span class="sc">$</span><span class="st">`</span><span class="at">AGE GROUP</span><span class="st">`</span> , <span class="at">fill =</span> amk_data<span class="sc">$</span>ID ))<span class="sc">+</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Distribution of AMK"</span>)<span class="sc">+</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"AGE GROUP"</span>)<span class="sc">+</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Percentage of Area Population"</span>) <span class="sc">+</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">round</span>(<span class="fu">seq</span>(<span class="fu">min</span>(amk_data<span class="sc">$</span><span class="st">`</span><span class="at">Population Perc</span><span class="st">`</span>), <span class="fu">max</span>(amk_data<span class="sc">$</span><span class="st">`</span><span class="at">Population Perc</span><span class="st">`</span>), <span class="at">by =</span> <span class="fl">0.5</span>),<span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill=</span><span class="st">'Gender'</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>bedok_data <span class="ot">=</span> overall_data[overall_data<span class="sc">$</span><span class="st">`</span><span class="at">Row Labels</span><span class="st">`</span> <span class="sc">==</span> <span class="st">'Bedok'</span>,]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(bedok_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  `Row Labels` `AGE GROUP` `Percentage of Male` `Percentage Of Female`
+  &lt;chr&gt;        &lt;chr&gt;                      &lt;dbl&gt;                  &lt;dbl&gt;
+1 Bedok        65 - 69                  0.0719                  0.0741
+2 Bedok        70 - 74                  0.0602                  0.0626
+3 Bedok        75 - 79                  0.0336                  0.0370
+4 Bedok        80 - 84                  0.0204                  0.0268
+5 Bedok        85 - 89                  0.00978                 0.0151
+6 Bedok        90 &amp; Over                0.00475                 0.0101</code></pre>
+</div>
+</div>
+<p>We isolate the data for male population in Bedok first. We also rename the column to Population percentage. Now in order to create a Pyramid graph, one of the column has to be negative. Hence, we will apply mathematics x (-1) to the Population Percentage for Male.</p>
+<p>We added one last column as ID to identify these rows as Male</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>bedok_data_male <span class="ot">=</span> bedok_data[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)]</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(bedok_data_male)[<span class="fu">names</span>(bedok_data_male) <span class="sc">==</span> <span class="st">'Percentage of Male'</span>] <span class="ot">&lt;-</span> <span class="st">'Population Perc'</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>bedok_data_male[<span class="dv">3</span>] <span class="ot">=</span> bedok_data_male[<span class="dv">3</span>]<span class="sc">*</span>(<span class="sc">-</span><span class="dv">1</span>) </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>bedok_data_male<span class="sc">$</span>ID <span class="ot">&lt;-</span> <span class="st">"Male"</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(bedok_data_male)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  `Row Labels` `AGE GROUP` `Population Perc` ID   
+  &lt;chr&gt;        &lt;chr&gt;                   &lt;dbl&gt; &lt;chr&gt;
+1 Bedok        65 - 69              -0.0719  Male 
+2 Bedok        70 - 74              -0.0602  Male 
+3 Bedok        75 - 79              -0.0336  Male 
+4 Bedok        80 - 84              -0.0204  Male 
+5 Bedok        85 - 89              -0.00978 Male 
+6 Bedok        90 &amp; Over            -0.00475 Male </code></pre>
+</div>
+</div>
+<p>We repeat simiar steps for female population Except we DO NOT have to convert the female population percentage to negative.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>bedok_data_female <span class="ot">=</span> bedok_data[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>)]</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(bedok_data_female)[<span class="fu">names</span>(bedok_data_female) <span class="sc">==</span> <span class="st">'Percentage Of Female'</span>] <span class="ot">&lt;-</span> <span class="st">'Population Perc'</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>bedok_data_female<span class="sc">$</span>ID <span class="ot">&lt;-</span> <span class="st">"Female"</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(bedok_data_female)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  `Row Labels` `AGE GROUP` `Population Perc` ID    
+  &lt;chr&gt;        &lt;chr&gt;                   &lt;dbl&gt; &lt;chr&gt; 
+1 Bedok        65 - 69                0.0741 Female
+2 Bedok        70 - 74                0.0626 Female
+3 Bedok        75 - 79                0.0370 Female
+4 Bedok        80 - 84                0.0268 Female
+5 Bedok        85 - 89                0.0151 Female
+6 Bedok        90 &amp; Over              0.0101 Female</code></pre>
+</div>
+</div>
+<p>Next we use rbind to combine the dataframe for male and female</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>bedok_df <span class="ot">=</span> <span class="fu">rbind.data.frame</span>(bedok_data_male ,bedok_data_female )</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(bedok_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  `Row Labels` `AGE GROUP` `Population Perc` ID   
+  &lt;chr&gt;        &lt;chr&gt;                   &lt;dbl&gt; &lt;chr&gt;
+1 Bedok        0 - 4                 -0.0373 Male 
+2 Bedok        5 - 9                 -0.0424 Male 
+3 Bedok        10 - 14               -0.0461 Male 
+4 Bedok        15 - 19               -0.0491 Male 
+5 Bedok        20 - 24               -0.0585 Male 
+6 Bedok        25 - 29               -0.0679 Male </code></pre>
+</div>
+</div>
+<p>Now with the combined dataframe bedok_df , we are ready to plot the graph with ggplot2.</p>
+<section id="age-sex-pyramid-graph-for-bedok" class="level2">
+<h2 class="anchored" data-anchor-id="age-sex-pyramid-graph-for-bedok">AGE-SEX PYRAMID GRAPH FOR BEDOK</h2>
+<p>We use fill = bedok_df$ID (the new column added) is to separate the 2 genders.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(bedok_df,</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>( <span class="at">x =</span> bedok_df<span class="sc">$</span><span class="st">`</span><span class="at">Population Perc</span><span class="st">`</span> , <span class="at">y =</span> bedok_df<span class="sc">$</span><span class="st">`</span><span class="at">AGE GROUP</span><span class="st">`</span> , <span class="at">fill =</span> bedok_df<span class="sc">$</span>ID ))<span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Distribution of Bedok"</span>)<span class="sc">+</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"AGE GROUP"</span>)<span class="sc">+</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Percentage of Area Population"</span>) <span class="sc">+</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">"Gender"</span>)<span class="sc">+</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> scales<span class="sc">::</span><span class="fu">pretty_breaks</span>(<span class="at">n =</span> <span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Use of `` amk_data$`Population Perc` `` is discouraged.
+<pre><code>Warning: Use of `` bedok_df$`Population Perc` `` is discouraged.
 ℹ Use `Population Perc` instead.</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Use of `` amk_data$`AGE GROUP` `` is discouraged.
+<pre><code>Warning: Use of `` bedok_df$`AGE GROUP` `` is discouraged.
 ℹ Use `AGE GROUP` instead.</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Use of `amk_data$ID` is discouraged.
+<pre><code>Warning: Use of `bedok_df$ID` is discouraged.
 ℹ Use `ID` instead.</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="TakehomeEx02_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<p><img src="TakehomeEx02_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Finally we have created a Age-Sex pyramid, using percentage of the Population of the area, rather than their absolute numbers.</p>
+<p>As such, even with the area of low population (like Outram or Downtown Core) , each age groups will still be better visualized using percentage of its own population.</p>
+<p>We can repeat this same steps for any planning areas in our original data.</p>
+</section>
+</section>
+<section id="creating-gender-pyramid-for-total-populations-of-9-planning-areas-using-ggplot2" class="level1">
+<h1>Creating Gender Pyramid for total populations of 9 planning areas using ggplot2</h1>
+<p>Let reload the data from the excel.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>total_data <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"Singapore Residents by Planning Area, Subzone, Age Group, Sex and Type of Dwelling, June 2022.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"TakeHome 2 data table"</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(total_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 6
+  `Row Labels` `AGE GROUP` `Sum of MALE` `Sum of FEMALE` Percentage o…¹ Percen…²
+  &lt;chr&gt;        &lt;chr&gt;               &lt;dbl&gt;           &lt;dbl&gt;          &lt;dbl&gt;    &lt;dbl&gt;
+1 Woodlands    70 - 74             23230           23830        0.0314   0.0324 
+2 Woodlands    75 - 79             10990           12980        0.0148   0.0177 
+3 Woodlands    80 - 84              6740            9550        0.00910  0.0130 
+4 Woodlands    85 - 89              2960            4550        0.00400  0.00619
+5 Woodlands    90 &amp; Over            1230            2490        0.00166  0.00339
+6 Grand Total  &lt;NA&gt;              3303750         3463030       NA       NA      
+# … with abbreviated variable names ¹​`Percentage of Male`,
+#   ²​`Percentage Of Female`</code></pre>
+</div>
+</div>
+<p>We can rename the Row Labels to become “Area”</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(total_data)[<span class="fu">names</span>(total_data) <span class="sc">==</span> <span class="st">'Row Labels'</span>] <span class="ot">&lt;-</span> <span class="st">'Area'</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(total_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 6
+  Area        `AGE GROUP` `Sum of MALE` `Sum of FEMALE` Percentage of…¹ Percen…²
+  &lt;chr&gt;       &lt;chr&gt;               &lt;dbl&gt;           &lt;dbl&gt;           &lt;dbl&gt;    &lt;dbl&gt;
+1 Woodlands   70 - 74             23230           23830         0.0314   0.0324 
+2 Woodlands   75 - 79             10990           12980         0.0148   0.0177 
+3 Woodlands   80 - 84              6740            9550         0.00910  0.0130 
+4 Woodlands   85 - 89              2960            4550         0.00400  0.00619
+5 Woodlands   90 &amp; Over            1230            2490         0.00166  0.00339
+6 Grand Total &lt;NA&gt;              3303750         3463030        NA       NA      
+# … with abbreviated variable names ¹​`Percentage of Male`,
+#   ²​`Percentage Of Female`</code></pre>
+</div>
+</div>
+<p>Next, again, before we create a Pyramid graph, we need to have 2 dataframes, one is for Male and the other is for Female</p>
+<p>We use a groupby and a summarize to group total number of male population for each Area ( AMK, Bedok, Tampines, etc….).</p>
+<p>Then we will need to convert the Population number to negative.</p>
+<p>We added one last column as Gender to identify these rows as Male.</p>
+<p>And it is better to drop the rows of Grand Total, so that we can clearly chart the graph to compare between the 9 areas only.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>total_data_male <span class="ot">=</span> total_data <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Area) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="st">`</span><span class="at">Population</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sum</span>(<span class="st">`</span><span class="at">Sum of MALE</span><span class="st">`</span>))</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># total_data_male = total_data_male[order(total_data_male$Population,decreasing = TRUE),]</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>total_data_male[<span class="dv">2</span>] <span class="ot">=</span> total_data_male[<span class="dv">2</span>] <span class="sc">*</span> (<span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>total_data_male<span class="sc">$</span>Gender <span class="ot">=</span> <span class="st">"Male"</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>total_data_male <span class="ot">&lt;-</span> total_data_male[<span class="sc">!</span>(total_data_male<span class="sc">$</span>Area) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Grand Total"</span>),]</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(total_data_male)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  Area          Population Gender
+  &lt;chr&gt;              &lt;dbl&gt; &lt;chr&gt; 
+1 Clementi         -240040 Male  
+2 Downtown Core      -8340 Male  
+3 Geylang          -293120 Male  
+4 Hougang          -609480 Male  
+5 Outram            -51290 Male  
+6 Woodlands        -740260 Male  </code></pre>
+</div>
+</div>
+<p>We repeat the same steps for female population for each Area</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>total_data_female <span class="ot">=</span> total_data <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Area) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="st">`</span><span class="at">Population</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sum</span>(<span class="st">`</span><span class="at">Sum of FEMALE</span><span class="st">`</span>))</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># total_data_female = total_data_female[order(total_data_female$Population,decreasing = TRUE),]</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>total_data_female<span class="sc">$</span>Gender <span class="ot">=</span> <span class="st">"Female"</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>total_data_female <span class="ot">&lt;-</span> total_data_female[<span class="sc">!</span>(total_data_female<span class="sc">$</span>Area) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Grand Total"</span>),]</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(total_data_female)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  Area          Population Gender
+  &lt;chr&gt;              &lt;dbl&gt; &lt;chr&gt; 
+1 Clementi          267580 Female
+2 Downtown Core       8790 Female
+3 Geylang           303490 Female
+4 Hougang           637040 Female
+5 Outram             51070 Female
+6 Woodlands         734600 Female</code></pre>
+</div>
+</div>
+<p>We now use rbind to combine the 2 sets of dataframes together.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>sg_pop <span class="ot">=</span> <span class="fu">rbind</span>(total_data_male , total_data_female)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>sg_pop <span class="ot">&lt;-</span> sg_pop[<span class="sc">!</span>(<span class="fu">row.names</span>(sg_pop) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Grand Total"</span>)),]</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(sg_pop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  Area          Population Gender
+  &lt;chr&gt;              &lt;dbl&gt; &lt;chr&gt; 
+1 Clementi          267580 Female
+2 Downtown Core       8790 Female
+3 Geylang           303490 Female
+4 Hougang           637040 Female
+5 Outram             51070 Female
+6 Woodlands         734600 Female</code></pre>
+</div>
+</div>
+<section id="pyramid-graph-for-9-planning-areas-population-by-gender" class="level2">
+<h2 class="anchored" data-anchor-id="pyramid-graph-for-9-planning-areas-population-by-gender">PYRAMID GRAPH FOR 9 PLANNING AREAS POPULATION, BY GENDER</h2>
+<p>With the combined dataframe, we can draw the pyramid graph using the ggplot2 now</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sg_pop,</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>( <span class="at">x =</span> Population , <span class="at">y =</span> Area , <span class="at">fill =</span> Gender))<span class="sc">+</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"SINGAPORE POPULATION DISTRIBUTION"</span>)<span class="sc">+</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"AREA"</span>)<span class="sc">+</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Population"</span>) <span class="sc">+</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">"Gender"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="TakehomeEx02_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">comma_format</span>(<span class="at">big.mark =</span> <span class="st">','</span> , <span class="at">decimal.mark =</span> <span class="st">'.'</span>) , <span class="at">breaks =</span> scales<span class="sc">::</span><span class="fu">pretty_breaks</span>(<span class="at">n =</span> <span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;ScaleContinuousPosition&gt;
+ Range:  
+ Limits:    0 --    1</code></pre>
+</div>
+</div>
+<p>As you can see, Outram and Downtown Core have the lowest number of population among the 9 chosen area. While Woodlands have the largest population.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

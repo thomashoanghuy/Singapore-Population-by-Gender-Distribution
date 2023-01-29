@@ -13,9 +13,11 @@ In the first task, we are supposed to create Age-sex Pyramid to cover 9 planning
 
 Below is one of the DataViz that was created by a classmate.
 
+<https://public.tableau.com/app/profile/ruipeng.wang/viz/take_home_01/Dashboard1?fbclid=IwAR1xjLcdtI9B6IQsXvE8DeuHGT0Xe1sL20M6RPAZ2gvhEV_hLizpZ9QdADg>
+
 ![](images/Picture1.png){fig-align="center"}
 
-Original DataViz https://public.tableau.com/app/profile/ruipeng.wang/viz/take_home_01/Dashboard1?fbclid=IwAR1xjLcdtI9B6IQsXvE8DeuHGT0Xe1sL20M6RPAZ2gvhEV_hLizpZ9QdADg
+Original DataViz
 
 Critiques:
 
@@ -37,24 +39,159 @@ Critiques:
 
 # Creating Age-sex pyramid using ggplot2
 
+Loading the necessary package
+
 ```{r}
 pacman::p_load(tidyverse)
 pacman::p_load(readxl)
 ```
 
 ```{r}
-amk_data <- read_excel("Singapore Residents by Planning Area, Subzone, Age Group, Sex and Type of Dwelling, June 2022.xlsx", sheet = "AMK")
-
-head(amk_data)
+overall_data <- read_excel("Singapore Residents by Planning Area, Subzone, Age Group, Sex and Type of Dwelling, June 2022.xlsx", sheet = "TakeHome 2 data table")
+tail(overall_data)
 ```
+
+We want to use draw the percentage of the populations versus the Area population, so we just need to get the percentage column
 
 ```{r}
-ggplot(amk_data,
-       aes( x = amk_data$`Population Perc` , y = amk_data$`AGE GROUP` , fill = amk_data$ID ))+
+overall_data = overall_data[c(1,2,5,6)]
+tail(overall_data)
+```
+
+Let's try with Area Bedok first.
+
+Create dataframe where Rows Labels = Bedok
+
+```{r}
+bedok_data = overall_data[overall_data$`Row Labels` == 'Bedok',]
+tail(bedok_data)
+```
+
+We isolate the data for male population in Bedok first. We also rename the column to Population percentage. Now in order to create a Pyramid graph, one of the column has to be negative. Hence, we will apply mathematics x (-1) to the Population Percentage for Male.
+
+We added one last column as ID to identify these rows as Male
+
+```{r}
+bedok_data_male = bedok_data[c(1,2,3)]
+names(bedok_data_male)[names(bedok_data_male) == 'Percentage of Male'] <- 'Population Perc'
+bedok_data_male[3] = bedok_data_male[3]*(-1) 
+bedok_data_male$ID <- "Male"
+
+tail(bedok_data_male)
+```
+
+We repeat simiar steps for female population Except we DO NOT have to convert the female population percentage to negative.
+
+```{r}
+bedok_data_female = bedok_data[c(1,2,4)]
+names(bedok_data_female)[names(bedok_data_female) == 'Percentage Of Female'] <- 'Population Perc'
+bedok_data_female$ID <- "Female"
+tail(bedok_data_female)
+```
+
+Next we use rbind to combine the dataframe for male and female
+
+```{r}
+bedok_df = rbind.data.frame(bedok_data_male ,bedok_data_female )
+
+head(bedok_df)
+```
+
+Now with the combined dataframe bedok_df , we are ready to plot the graph with ggplot2.
+
+## AGE-SEX PYRAMID GRAPH FOR BEDOK
+
+We use fill = bedok_df\$ID (the new column added) is to separate the 2 genders.
+
+```{r}
+ggplot(bedok_df,
+       aes( x = bedok_df$`Population Perc` , y = bedok_df$`AGE GROUP` , fill = bedok_df$ID ))+
   geom_bar(stat = "identity") +
-  ggtitle("Distribution of AMK")+
+  ggtitle("Distribution of Bedok")+
   ylab("AGE GROUP")+
   xlab("Percentage of Area Population") +
-  scale_x_continuous(breaks = round(seq(min(amk_data$`Population Perc`), max(amk_data$`Population Perc`), by = 0.5),1)) +
-  labs(fill='Gender') 
+  labs(fill = "Gender")+
+  scale_x_continuous(breaks = scales::pretty_breaks(n = 10))
 ```
+
+Finally we have created a Age-Sex pyramid, using percentage of the Population of the area, rather than their absolute numbers.
+
+As such, even with the area of low population (like Outram or Downtown Core) , each age groups will still be better visualized using percentage of its own population.
+
+We can repeat this same steps for any planning areas in our original data.
+
+# Creating Gender Pyramid for total populations of 9 planning areas using ggplot2
+
+Let reload the data from the excel.
+
+```{r}
+total_data <- read_excel("Singapore Residents by Planning Area, Subzone, Age Group, Sex and Type of Dwelling, June 2022.xlsx", sheet = "TakeHome 2 data table")
+
+tail(total_data)
+```
+
+We can rename the Row Labels to become "Area"
+
+```{r}
+names(total_data)[names(total_data) == 'Row Labels'] <- 'Area'
+tail(total_data)
+```
+
+Next, again, before we create a Pyramid graph, we need to have 2 dataframes, one is for Male and the other is for Female
+
+We use a groupby and a summarize to group total number of male population for each Area ( AMK, Bedok, Tampines, etc....).
+
+Then we will need to convert the Population number to negative.
+
+We added one last column as Gender to identify these rows as Male.
+
+And it is better to drop the rows of Grand Total, so that we can clearly chart the graph to compare between the 9 areas only.
+
+```{r}
+total_data_male = total_data %>% group_by(Area) %>% summarise(`Population` = sum(`Sum of MALE`))
+# total_data_male = total_data_male[order(total_data_male$Population,decreasing = TRUE),]
+
+total_data_male[2] = total_data_male[2] * (-1)
+total_data_male$Gender = "Male"
+total_data_male <- total_data_male[!(total_data_male$Area) %in% c("Grand Total"),]
+
+tail(total_data_male)
+
+```
+
+We repeat the same steps for female population for each Area
+
+```{r}
+total_data_female = total_data %>% group_by(Area) %>% summarise(`Population` = sum(`Sum of FEMALE`))
+# total_data_female = total_data_female[order(total_data_female$Population,decreasing = TRUE),]
+total_data_female$Gender = "Female"
+total_data_female <- total_data_female[!(total_data_female$Area) %in% c("Grand Total"),]
+
+tail(total_data_female)
+
+```
+
+We now use rbind to combine the 2 sets of dataframes together.
+
+```{r}
+sg_pop = rbind(total_data_male , total_data_female)
+sg_pop <- sg_pop[!(row.names(sg_pop) %in% c("Grand Total")),]
+tail(sg_pop)
+```
+
+## PYRAMID GRAPH FOR 9 PLANNING AREAS POPULATION, BY GENDER
+
+With the combined dataframe, we can draw the pyramid graph using the ggplot2 now
+
+```{r}
+ggplot(sg_pop,
+       aes( x = Population , y = Area , fill = Gender))+
+  geom_bar(stat = "identity") +
+  ggtitle("SINGAPORE POPULATION DISTRIBUTION")+
+  ylab("AREA")+
+  xlab("Population") +
+  labs(fill = "Gender")
+  scale_x_continuous(labels = scales::comma_format(big.mark = ',' , decimal.mark = '.') , breaks = scales::pretty_breaks(n = 5))
+```
+
+As you can see, Outram and Downtown Core have the lowest number of population among the 9 chosen area. While Woodlands have the largest population.
