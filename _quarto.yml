@@ -7,11 +7,9 @@ website:
     left:
     - text: "Take Home Exercise"
       menu:
-        - text: "Data Preparation"
-          href: Data Preparation.html
-        - text: "Dashboard Building"
-          href: Dashboard Building.html
-        - text: "Take Exercise 02"
+        - text: "Takehome Exercise 01"
+          href: TakehomeEx01.html
+        - text: "Takehome Exercise 02"
           href: TakehomeEx02.html
     right: 
     - text: "About Page"

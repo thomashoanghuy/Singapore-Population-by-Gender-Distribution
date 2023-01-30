@@ -1,0 +1,183 @@
+---
+title: "Takehome Exercise 1"
+---
+
+## The Data
+
+*Singapore Residents by Planning Area / Subzone, Age Group, Sex and Type of Dwelling, June 2022* should be used to prepare the analytical visualisation. It is available at [Department of Statistics, Singapore](https://www.singstat.gov.sg/)(in short SingStat).
+
+Let's examine the data.
+
+We have 1 excel dataset under xlsx format. Inside we found 3 worksheets: 2022(Total) / 2022 (Male) / 2022 (Female).
+
+Each worksheet has 5 columns as followed:
+
+![](images/1st.JPG){fig-align="center"}
+
+-   Planning Areas represents the names for each planning areas in Singapore.
+
+-   Subzone further divides Planning area into small zones.
+
+-   Age group represents the age groups for population between 0 and 90, with interval of 5 years (0-4 / 5-9 / 10-14 etc...)
+
+-   Type of Dwelling represents the types of housing in this census.
+
+-   Total is the number of populations for each categories.
+
+3 worksheets, represents numbers for Male populations, Female Population and Total.
+
+Our tasks would be creating visualizations from these raw data. Our choices of visualization will be using Age-Sex pyramid.
+
+## Data Preparation
+
+First, Age-sex pyramid requires data to be split into male and females. The exercise also requires to split into 9 different planning areas.
+
+First we will copy the columns which contains the total number of male ( from 2022 (Male) worksheet ) and total number of female ( from 2022 (Female)) worksheet to 2022 (Total) worksheet, adding on as 6th and 7th columns.
+
+![](images/2nd.JPG){fig-align="center"}
+
+From here, we can create Pivot table which includes all the data under this worksheet.
+
+![](images/3rd.JPG){fig-align="center"}
+
+Select entire worksheet 2022 (Total) as Data source
+
+![](images/pivot%20table.jpg){fig-align="left"}
+
+There will be a new worksheet created, as Pivot table.
+
+Now we will drag Planning Area to Rows box for the Pivot table. And we will choose Total as Values box ![](images/pivot%20table%202.jpg){width="188"}
+
+Now we shall right click on the Sum of Total column and **Sort** from Largest to smallest. We will now select 9 most populous planning areas of Singapore. We shall filter and keep these 9 areas only.
+
+![](images/5th.JPG)
+
+Next step, we drag in Males and Females (drag and drop to Pivot table Values box) and remove the Sums of Total from this Values box.
+
+We will also add in the Age Group, under Rows box.
+
+![](images/7th-01.JPG)
+
+**We will have a table of 9 most populous areas in Singapore, and their age-group smaller breakdown.**
+
+![](images/8th.JPG)
+
+We will filter out the Total from these age group breakdown. (Because the total for each areas are already in bolden first row, so we don't need this last row of Total anymore.
+
+We shall copy this table and paste-special (values only) to a new worksheet.
+
+-   Insert a new column in between Rows Label and Sums of Male.
+
+-   Copy the age group over, we will separate: First column is only for name of Planning Areas ( Bedok, Choa Chu Kang, Hougang etc...) and second column will be only for Age Group.
+
+## Our final worksheet, we will have a similar worksheet like this ( under worksheet Sheet1)
+
+![](images/9th.jpg)
+
+
+
+## DASHBOARD BUILDING
+
+Open new Tableau window. Save and name it as your project.
+
+We can drag the xlsx excel data into this Tableau window.
+
+Drag Sheet1 into the middle (this is the final data table above after data transformation from previous steps). We shall take this as our datasource.
+
+Click on Sheet 1 and we will create the first Tableau Sheet
+
+![](images/10th.JPG)
+
+We shall put drag these items to Columns: Sums of MALE , Sums of FEMALE and Rows: Planning Area
+
+![](images/tableau%20sheet%201.jpg)
+
+Next, right click on one of the Axis and **EDIT AXIS**
+
+![](images/12th.jpg)
+
+We will tick the Reverse options, as well as rename the axis to "Male Population"
+
+![](images/13TH.JPG)
+
+We shall repeat the same for Female side. (but do not tick the Reverse option).
+
+We shall then right click Null value to exclude them from the filter
+
+![](images/12th-01.jpg)
+
+Finally, we will have a pyramid graph, similar to this
+
+![](images/15th.JPG){fig-align="center" width="750"}
+
+We shall right on the Sheet 1, and duplicate this worksheet 9 times, one for each other areas.
+
+We shall rename each worksheets as per each of the planning areas ( Bedok, Choa Chu Kang, Hougang etc...)
+
+This is already a pyramid graph of Singapore populations for 9 most populous areas, but we still need to break down in term of age group.
+
+### We select Bedok sheet
+
+Right click on Filters of Planning Areas \> Edit filters
+
+![](images/16th.jpg)
+
+For example, if this is worksheet for Bedok, we can exclude other areas.
+
+![](images/tableau%20sheet%203.%20jpg.jpg)
+
+Next, we drag Age Group into Rows.
+
+![](images/17th.JPG)
+
+Right click on Age Group \> Filter \> Exclude Total
+
+We will have a pyramid graph for Bedok population only: Depict populations between Male and Female, with subsets of each age groups for Bedok areas only.
+
+![](images/tableau%20sheet%204.jpg)
+
+Next is aesthetics, where we have to input colours to make things more distinctive.
+
+The recommendation would be one half (Male) would be warm and light color, while the other half should carry darker and cold color.
+
+![](images/18th.JPG)
+
+We repeat the same steps above for all 9 planning areas. Remember to maintain the same color codes / formats for all 9 areas.
+
+## Lastly, we can building Dashboard.
+
+Create new dashboard
+
+![](images/19th.jpg)
+
+We choose Floating as the setting and choose Vertical objects
+
+![](images/20th.jpg)
+
+We divide dashboard into 9 evenly horizontal rectangle containers. Next we drag each of the Sheets into each of these container.
+
+![](images/21th.jpg)
+
+1.  Remember to change Standard to Entire view to see entire graph.
+
+2.  Also click on Device Preview and view as Large Desktop Monitor (2560 x 1440) And click on Size ( default is Fixed) and change to Automatic.
+
+3.  After dragging each planning areas into the container. Remove the labels and ledgers ( Plannings Areas, Sum of Male and Sums of Females.
+
+4.  Play around with the 9 planning areas (alignments of lines and borders, colours etc..)
+
+## **Final results would look similar to this.**
+
+![](images/22nd.JPG)
+
+## [**Publishing Dashboard**]{.underline}
+
+Finally, we can go to Data / Sheet1 / Extract Data
+
+After data extraction (saving Tableau working as .hyper file), we can go to Server \> Tableau Public \> Save to Tableau Public.
+
+If you have logged in to your Tableau public account, this will be uploaded as a new Viz under your profile.
+
+You can view my published Viz under this link
+
+[Singapore Population Distribution](https://public.tableau.com/app/profile/thomas.hoang8154/viz/takehome1_16740523080150/Dashboard3)

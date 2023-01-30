@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>ISSS608 VISUAL - Takehome Exercise 1</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">ISSS608 VISUAL</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-take-home-exercise" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Take Home Exercise</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-take-home-exercise">    
+        <li>
+    <a class="dropdown-item" href="./TakehomeEx01.html">
+ <span class="dropdown-text">Takehome Exercise 01</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./TakehomeEx02.html">
+ <span class="dropdown-text">Takehome Exercise 02</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html">
+ <span class="menu-text">About Page</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-data" id="toc-the-data" class="nav-link active" data-scroll-target="#the-data">The Data</a></li>
+  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation">Data Preparation</a></li>
+  <li><a href="#our-final-worksheet-we-will-have-a-similar-worksheet-like-this-under-worksheet-sheet1" id="toc-our-final-worksheet-we-will-have-a-similar-worksheet-like-this-under-worksheet-sheet1" class="nav-link" data-scroll-target="#our-final-worksheet-we-will-have-a-similar-worksheet-like-this-under-worksheet-sheet1">Our final worksheet, we will have a similar worksheet like this ( under worksheet Sheet1)</a></li>
+  <li><a href="#dashboard-building" id="toc-dashboard-building" class="nav-link" data-scroll-target="#dashboard-building">DASHBOARD BUILDING</a>
+  <ul class="collapse">
+  <li><a href="#we-select-bedok-sheet" id="toc-we-select-bedok-sheet" class="nav-link" data-scroll-target="#we-select-bedok-sheet">We select Bedok sheet</a></li>
+  </ul></li>
+  <li><a href="#lastly-we-can-building-dashboard." id="toc-lastly-we-can-building-dashboard." class="nav-link" data-scroll-target="#lastly-we-can-building-dashboard.">Lastly, we can building Dashboard.</a></li>
+  <li><a href="#final-results-would-look-similar-to-this." id="toc-final-results-would-look-similar-to-this." class="nav-link" data-scroll-target="#final-results-would-look-similar-to-this."><strong>Final results would look similar to this.</strong></a></li>
+  <li><a href="#publishing-dashboard" id="toc-publishing-dashboard" class="nav-link" data-scroll-target="#publishing-dashboard"><u><strong>Publishing Dashboard</strong></u></a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Takehome Exercise 1</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="the-data" class="level2">
+<h2 class="anchored" data-anchor-id="the-data">The Data</h2>
+<p><em>Singapore Residents by Planning Area / Subzone, Age Group, Sex and Type of Dwelling, June 2022</em> should be used to prepare the analytical visualisation. It is available at <a href="https://www.singstat.gov.sg/">Department of Statistics, Singapore</a>(in short SingStat).</p>
+<p>Let’s examine the data.</p>
+<p>We have 1 excel dataset under xlsx format. Inside we found 3 worksheets: 2022(Total) / 2022 (Male) / 2022 (Female).</p>
+<p>Each worksheet has 5 columns as followed:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/1st.JPG" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<ul>
+<li><p>Planning Areas represents the names for each planning areas in Singapore.</p></li>
+<li><p>Subzone further divides Planning area into small zones.</p></li>
+<li><p>Age group represents the age groups for population between 0 and 90, with interval of 5 years (0-4 / 5-9 / 10-14 etc…)</p></li>
+<li><p>Type of Dwelling represents the types of housing in this census.</p></li>
+<li><p>Total is the number of populations for each categories.</p></li>
+</ul>
+<p>3 worksheets, represents numbers for Male populations, Female Population and Total.</p>
+<p>Our tasks would be creating visualizations from these raw data. Our choices of visualization will be using Age-Sex pyramid.</p>
+</section>
+<section id="data-preparation" class="level2">
+<h2 class="anchored" data-anchor-id="data-preparation">Data Preparation</h2>
+<p>First, Age-sex pyramid requires data to be split into male and females. The exercise also requires to split into 9 different planning areas.</p>
+<p>First we will copy the columns which contains the total number of male ( from 2022 (Male) worksheet ) and total number of female ( from 2022 (Female)) worksheet to 2022 (Total) worksheet, adding on as 6th and 7th columns.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/2nd.JPG" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>From here, we can create Pivot table which includes all the data under this worksheet.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/3rd.JPG" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>Select entire worksheet 2022 (Total) as Data source</p>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="images/pivot table.jpg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>There will be a new worksheet created, as Pivot table.</p>
+<p>Now we will drag Planning Area to Rows box for the Pivot table. And we will choose Total as Values box <img src="images/pivot table 2.jpg" class="img-fluid" width="188"></p>
+<p>Now we shall right click on the Sum of Total column and <strong>Sort</strong> from Largest to smallest. We will now select 9 most populous planning areas of Singapore. We shall filter and keep these 9 areas only.</p>
+<p><img src="images/5th.JPG" class="img-fluid"></p>
+<p>Next step, we drag in Males and Females (drag and drop to Pivot table Values box) and remove the Sums of Total from this Values box.</p>
+<p>We will also add in the Age Group, under Rows box.</p>
+<p><img src="images/7th-01.JPG" class="img-fluid"></p>
+<p><strong>We will have a table of 9 most populous areas in Singapore, and their age-group smaller breakdown.</strong></p>
+<p><img src="images/8th.JPG" class="img-fluid"></p>
+<p>We will filter out the Total from these age group breakdown. (Because the total for each areas are already in bolden first row, so we don’t need this last row of Total anymore.</p>
+<p>We shall copy this table and paste-special (values only) to a new worksheet.</p>
+<ul>
+<li><p>Insert a new column in between Rows Label and Sums of Male.</p></li>
+<li><p>Copy the age group over, we will separate: First column is only for name of Planning Areas ( Bedok, Choa Chu Kang, Hougang etc…) and second column will be only for Age Group.</p></li>
+</ul>
+</section>
+<section id="our-final-worksheet-we-will-have-a-similar-worksheet-like-this-under-worksheet-sheet1" class="level2">
+<h2 class="anchored" data-anchor-id="our-final-worksheet-we-will-have-a-similar-worksheet-like-this-under-worksheet-sheet1">Our final worksheet, we will have a similar worksheet like this ( under worksheet Sheet1)</h2>
+<p><img src="images/9th.jpg" class="img-fluid"></p>
+</section>
+<section id="dashboard-building" class="level2">
+<h2 class="anchored" data-anchor-id="dashboard-building">DASHBOARD BUILDING</h2>
+<p>Open new Tableau window. Save and name it as your project.</p>
+<p>We can drag the xlsx excel data into this Tableau window.</p>
+<p>Drag Sheet1 into the middle (this is the final data table above after data transformation from previous steps). We shall take this as our datasource.</p>
+<p>Click on Sheet 1 and we will create the first Tableau Sheet</p>
+<p><img src="images/10th.JPG" class="img-fluid"></p>
+<p>We shall put drag these items to Columns: Sums of MALE , Sums of FEMALE and Rows: Planning Area</p>
+<p><img src="images/tableau sheet 1.jpg" class="img-fluid"></p>
+<p>Next, right click on one of the Axis and <strong>EDIT AXIS</strong></p>
+<p><img src="images/12th.jpg" class="img-fluid"></p>
+<p>We will tick the Reverse options, as well as rename the axis to “Male Population”</p>
+<p><img src="images/13TH.JPG" class="img-fluid"></p>
+<p>We shall repeat the same for Female side. (but do not tick the Reverse option).</p>
+<p>We shall then right click Null value to exclude them from the filter</p>
+<p><img src="images/12th-01.jpg" class="img-fluid"></p>
+<p>Finally, we will have a pyramid graph, similar to this</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/15th.JPG" class="img-fluid figure-img" width="750"></p>
+</figure>
+</div>
+<p>We shall right on the Sheet 1, and duplicate this worksheet 9 times, one for each other areas.</p>
+<p>We shall rename each worksheets as per each of the planning areas ( Bedok, Choa Chu Kang, Hougang etc…)</p>
+<p>This is already a pyramid graph of Singapore populations for 9 most populous areas, but we still need to break down in term of age group.</p>
+<section id="we-select-bedok-sheet" class="level3">
+<h3 class="anchored" data-anchor-id="we-select-bedok-sheet">We select Bedok sheet</h3>
+<p>Right click on Filters of Planning Areas &gt; Edit filters</p>
+<p><img src="images/16th.jpg" class="img-fluid"></p>
+<p>For example, if this is worksheet for Bedok, we can exclude other areas.</p>
+<p><img src="images/tableau sheet 3. jpg.jpg" class="img-fluid"></p>
+<p>Next, we drag Age Group into Rows.</p>
+<p><img src="images/17th.JPG" class="img-fluid"></p>
+<p>Right click on Age Group &gt; Filter &gt; Exclude Total</p>
+<p>We will have a pyramid graph for Bedok population only: Depict populations between Male and Female, with subsets of each age groups for Bedok areas only.</p>
+<p><img src="images/tableau sheet 4.jpg" class="img-fluid"></p>
+<p>Next is aesthetics, where we have to input colours to make things more distinctive.</p>
+<p>The recommendation would be one half (Male) would be warm and light color, while the other half should carry darker and cold color.</p>
+<p><img src="images/18th.JPG" class="img-fluid"></p>
+<p>We repeat the same steps above for all 9 planning areas. Remember to maintain the same color codes / formats for all 9 areas.</p>
+</section>
+</section>
+<section id="lastly-we-can-building-dashboard." class="level2">
+<h2 class="anchored" data-anchor-id="lastly-we-can-building-dashboard.">Lastly, we can building Dashboard.</h2>
+<p>Create new dashboard</p>
+<p><img src="images/19th.jpg" class="img-fluid"></p>
+<p>We choose Floating as the setting and choose Vertical objects</p>
+<p><img src="images/20th.jpg" class="img-fluid"></p>
+<p>We divide dashboard into 9 evenly horizontal rectangle containers. Next we drag each of the Sheets into each of these container.</p>
+<p><img src="images/21th.jpg" class="img-fluid"></p>
+<ol type="1">
+<li><p>Remember to change Standard to Entire view to see entire graph.</p></li>
+<li><p>Also click on Device Preview and view as Large Desktop Monitor (2560 x 1440) And click on Size ( default is Fixed) and change to Automatic.</p></li>
+<li><p>After dragging each planning areas into the container. Remove the labels and ledgers ( Plannings Areas, Sum of Male and Sums of Females.</p></li>
+<li><p>Play around with the 9 planning areas (alignments of lines and borders, colours etc..)</p></li>
+</ol>
+</section>
+<section id="final-results-would-look-similar-to-this." class="level2">
+<h2 class="anchored" data-anchor-id="final-results-would-look-similar-to-this."><strong>Final results would look similar to this.</strong></h2>
+<p><img src="images/22nd.JPG" class="img-fluid"></p>
+</section>
+<section id="publishing-dashboard" class="level2">
+<h2 class="anchored" data-anchor-id="publishing-dashboard"><u><strong>Publishing Dashboard</strong></u></h2>
+<p>Finally, we can go to Data / Sheet1 / Extract Data</p>
+<p>After data extraction (saving Tableau working as .hyper file), we can go to Server &gt; Tableau Public &gt; Save to Tableau Public.</p>
+<p>If you have logged in to your Tableau public account, this will be uploaded as a new Viz under your profile.</p>
+<p>You can view my published Viz under this link</p>
+<p><a href="https://public.tableau.com/app/profile/thomas.hoang8154/viz/takehome1_16740523080150/Dashboard3">Singapore Population Distribution</a></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
