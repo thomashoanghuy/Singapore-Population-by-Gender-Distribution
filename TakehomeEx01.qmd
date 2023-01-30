@@ -181,3 +181,32 @@ If you have logged in to your Tableau public account, this will be uploaded as a
 You can view my published Viz under this link
 
 [Singapore Population Distribution](https://public.tableau.com/app/profile/thomas.hoang8154/viz/takehome1_16740523080150/Dashboard3)
+
+
+## SUMMARY
+
+## Commentaries on the Data
+
+There is a general assumption about Singapore population: Singapore is having an aging population. The general trend observable from the pyramid graphs of 9 different planning areas in Singapore show that they are all middle heavy (meaning the highest segment of population are among the working adults between 25- to 60 years old).
+
+While it is natural that the bottom of these pyramid graph, which represent the elderly populations, are small, due to death, it is indeed an evident of an aging population when most of the top portions of the pyramids are also small. This shows that Singaporean at family-planning age (at the age 25-60 years old) , are not having children, hence the low fertility rate and a smaller tops of the pyramids
+
+A closer look at different planning areas, can give us some patterns on different geographical distributions as well. Generally, other 7 out of 9 areas in this dashboard, for the age between 0 and 20, the younger, the smaller are the population numbers, while the adolescent population are largest among pre-adults' population. Except Punggol and Sengkang, these 2 areas see the highest percentage of populations of children age, when compared to the rest of population of the area. This may suggest that Sengkang and Punggol are two areas where there are many young families / couples are having children.
+
+The gender distribution of Singapore's population is relatively balanced, However, there are slight variations in the gender distribution among different age groups. For example, among children aged 0-14, there are slightly more males than females. However, among adults aged 15-64, there are slightly more females than males. And among older adults aged 75 and above, there are more females than males. This is because female tend to have higher life expectancy than male.
+
+Further breakdown by planning areas, Punggol and Sengkang are 2 areas with highest portion of populations among the 25-40 years old, millennial prime working populations, compared to the other age groups in the same areas. This means the average ages of population among these 2 areas would be lower, compared to other matured estates.
+
+In conclusion, while some of areas of Singapore are consisting of younger populations and children / teenage populations, overall, Singapore is still foreseen to encounter an aging population. With majority of graphs are middle heavy ( the working adults age between 25-60), these segment of population will eventually grow older and move to older age groups, while the smaller top populations of children and teenagers are too small to replace the current working adult population. If this is not addressed urgently by the government, this will lead to many social and economic and healthcare problems for the country within next few decades.
+
+## About this site.
+
+This is capybara first site that help me start learning Data visualization with many tools
+
+1.  Data Preparation and Cleaning with Excel
+
+2.  Data Visualization by Tableau
+
+3.  Website Design by HTML and R Studio tools to create , render , commit onto Github and subsequently publishing on Netlify
+
+## 

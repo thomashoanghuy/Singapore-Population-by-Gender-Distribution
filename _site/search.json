@@ -138,5 +138,26 @@
     "title": "Takehome Exercise 1",
     "section": "Publishing Dashboard",
     "text": "Publishing Dashboard\nFinally, we can go to Data / Sheet1 / Extract Data\nAfter data extraction (saving Tableau working as .hyper file), we can go to Server > Tableau Public > Save to Tableau Public.\nIf you have logged in to your Tableau public account, this will be uploaded as a new Viz under your profile.\nYou can view my published Viz under this link\nSingapore Population Distribution"
+  },
+  {
+    "objectID": "TakehomeEx01.html#summary",
+    "href": "TakehomeEx01.html#summary",
+    "title": "Takehome Exercise 1",
+    "section": "SUMMARY",
+    "text": "SUMMARY"
+  },
+  {
+    "objectID": "TakehomeEx01.html#commentaries-on-the-data",
+    "href": "TakehomeEx01.html#commentaries-on-the-data",
+    "title": "Takehome Exercise 1",
+    "section": "Commentaries on the Data",
+    "text": "Commentaries on the Data\nThere is a general assumption about Singapore population: Singapore is having an aging population. The general trend observable from the pyramid graphs of 9 different planning areas in Singapore show that they are all middle heavy (meaning the highest segment of population are among the working adults between 25- to 60 years old).\nWhile it is natural that the bottom of these pyramid graph, which represent the elderly populations, are small, due to death, it is indeed an evident of an aging population when most of the top portions of the pyramids are also small. This shows that Singaporean at family-planning age (at the age 25-60 years old) , are not having children, hence the low fertility rate and a smaller tops of the pyramids\nA closer look at different planning areas, can give us some patterns on different geographical distributions as well. Generally, other 7 out of 9 areas in this dashboard, for the age between 0 and 20, the younger, the smaller are the population numbers, while the adolescent population are largest among pre-adults’ population. Except Punggol and Sengkang, these 2 areas see the highest percentage of populations of children age, when compared to the rest of population of the area. This may suggest that Sengkang and Punggol are two areas where there are many young families / couples are having children.\nThe gender distribution of Singapore’s population is relatively balanced, However, there are slight variations in the gender distribution among different age groups. For example, among children aged 0-14, there are slightly more males than females. However, among adults aged 15-64, there are slightly more females than males. And among older adults aged 75 and above, there are more females than males. This is because female tend to have higher life expectancy than male.\nFurther breakdown by planning areas, Punggol and Sengkang are 2 areas with highest portion of populations among the 25-40 years old, millennial prime working populations, compared to the other age groups in the same areas. This means the average ages of population among these 2 areas would be lower, compared to other matured estates.\nIn conclusion, while some of areas of Singapore are consisting of younger populations and children / teenage populations, overall, Singapore is still foreseen to encounter an aging population. With majority of graphs are middle heavy ( the working adults age between 25-60), these segment of population will eventually grow older and move to older age groups, while the smaller top populations of children and teenagers are too small to replace the current working adult population. If this is not addressed urgently by the government, this will lead to many social and economic and healthcare problems for the country within next few decades."
+  },
+  {
+    "objectID": "TakehomeEx01.html#about-this-site.",
+    "href": "TakehomeEx01.html#about-this-site.",
+    "title": "Takehome Exercise 1",
+    "section": "About this site.",
+    "text": "About this site.\nThis is capybara first site that help me start learning Data visualization with many tools\n\nData Preparation and Cleaning with Excel\nData Visualization by Tableau\nWebsite Design by HTML and R Studio tools to create , render , commit onto Github and subsequently publishing on Netlify"
   }
 ]
